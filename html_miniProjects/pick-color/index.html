@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Color Picker App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="imageContainer">
+        <img id="image" />
+        <div id="colorPicker"></div>
+        <input type="file" id="imageInput" accept="image/*" />
+      </div>
+      <div id="colorInfo">
+        <p id="rgbValue">RGB:</p>
+        <p id="hexValue">Hex:</p>
+      </div>
+      <div id="colorHistory">
+        <p>Color History:</p>
+        <div id="colorHistoryList"></div>
+        <!-- Include colorHistoryList here -->
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "xlsx-reader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "node-xlsx": "^0.24.0",
+    "p-limit": "^5.0.0",
+    "xlsx-populate": "^1.21.0"
+  }
+}

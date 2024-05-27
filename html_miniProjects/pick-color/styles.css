@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  overflow: scroll;
+  padding: 10px;
+  justify-content: center;
+}
+
+.container {
+  width: 500px;
+  text-align: center;
+}
+
+#imageContainer > img {
+  border: 1px solid silver;
+  width: 500px !important;
+  height: 500px !important;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+#colorPicker {
+  position: relative;
+  border: 2px solid #000;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+#colorInfo {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#colorInfo > p {
+  color: #000;
+}
+
+#colorHistory {
+  text-align: left;
+}
+
+.colorDisplay {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid #000;
+  font-size: 12px;
+  background-color: #fff;
+  color: #000;
+}

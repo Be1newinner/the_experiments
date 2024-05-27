@@ -1,0 +1,63 @@
+.circle{
+    width: 30px;
+    height: 30px;
+    background-color: white ;
+    border: 3px solid #E0E0E0;
+    display: flex;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    color: rgb(177, 177, 177);
+    font-weight: 900;
+    transition:all 0.3s ease;
+}
+
+.active{
+    border-color: rgb(0, 155, 216) !important;
+}
+
+.activeBack{
+    background-color: rgb(0, 155, 216) !important;
+}
+
+.progressBar {
+    display: flex;
+}
+
+.line {
+    width: 75px;
+    height: 4px;
+    background-color: #E0E0E0;
+    position: relative;
+    top: 15px;
+    background: linear-gradient(to left, #E0E0E0 50%, rgb(0, 155, 216) 50%);
+    background-size: 200% 100%;
+    background-position:right;
+    transition:all 0.5s ease;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.buttonGroup {
+    padding-top: 30px;
+    padding-left: 107px;
+}
+
+.buttonGroup > button {
+    padding: 10px 25px;
+    border-radius: 10px;
+    border-width: 0;
+    color: white;
+    background-color: #e0e0e0;
+}
+
+.buttonGroup > button:hover {
+    cursor:pointer;
+}
