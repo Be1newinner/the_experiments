@@ -1,0 +1,21 @@
+[
+  {
+    "id": 0,
+    "question": "Sum all the inputs recieved!",
+    "answerType": "number",
+    "inputs": [
+      { "inputs": [1, 2, 3], "answer": 6, "key": 0 },
+      { "inputs": [1596, 2477, 3125], "answer": 7198, "key": 1 },
+      { "inputs": [112, 2248, 3, 58498, 4684], "answer": 65545, "key": 2 },
+      { "inputs": [1, 5, 3, 10, 15, 16, 25, 96, 85], "answer": 256, "key": 3 }
+    ],
+    "initialCode": "function main(a){ //your code will be here } main(arguments);"
+  },
+  {
+    "id": 1,
+    "question": "Sum all the inputs recieved!",
+    "answerType": "number",
+    "inputs": [{ "inputs": [1, 2, 3], "answer": 6, "key": 0 }],
+    "initialCode": "(function(args){})()"
+  }
+]
