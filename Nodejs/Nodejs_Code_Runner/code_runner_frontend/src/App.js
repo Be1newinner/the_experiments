@@ -119,6 +119,7 @@ function App() {
             backgroundColor: "black",
             color: "white",
             whiteSpace: "pre-wrap" /* Since CSS 2.1 */,
+            fontSize: 16,
           }}
           onChange={(e) => setInputData(e.target.value)}
           value={inputData}
