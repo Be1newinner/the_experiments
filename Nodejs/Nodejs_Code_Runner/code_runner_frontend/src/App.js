@@ -11,7 +11,7 @@ function App() {
 
   async function submitAnswer() {
     console.log(inputData, questionID);
-    const data = await fetch("http://localhost:5000/run-code", {
+    const data = await fetch("https://examplevercelexpress-vijay-kumars-projects-dd673b3a.vercel.app/run-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function App() {
   }
 
   async function getQuestion() {
-    const data = await fetch("http://localhost:5000/ask-question", {
+    const data = await fetch("https://examplevercelexpress-vijay-kumars-projects-dd673b3a.vercel.app/ask-question", {
       method: "POST",
     });
     const response = await data.json();
