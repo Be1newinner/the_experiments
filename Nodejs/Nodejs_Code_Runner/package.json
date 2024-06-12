@@ -2,12 +2,12 @@
   "name": "nodejs_code_runner",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js --no-node-snapshot"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "isolated-vm": "^5.0.0",
     "nodemon": "^3.1.3"

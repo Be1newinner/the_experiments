@@ -1,11 +1,22 @@
 const express = require("express");
 const ivm = require("isolated-vm");
-// const code = require("./code");
 const questionsBank = require("./Questions.json");
+const path = require("path");
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "http://localhost:9125",
+};
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
+
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(
+  "/",
+  express.static(path.join(__dirname, "code_runner_frontend/build"))
+);
 
 async function runCode(scriptPassed) {
   const isolate = new ivm.Isolate({ memoryLimit: 8 });
@@ -15,20 +26,12 @@ async function runCode(scriptPassed) {
   return result;
 }
 
-app.get("/", (req, res) => {
-  console.log("Hello World!");
-  res.send("Hello!");
-  res.end();
-});
-
 app.post("/run-code", async (req, res) => {
   const codeData = req.body.code;
   const questionID = req.body.question;
 
   const userQuestion =
     questionsBank?.find((item) => item.id === questionID) || {};
-
-  // console.log({ userQuestion, questionID, codeData });
 
   if (!Object.keys(userQuestion).length) {
     res.send("No Such Question Exist!");
@@ -49,11 +52,11 @@ app.post("/run-code", async (req, res) => {
         })
       );
 
-      console.log("COMPILED => ", answers);
+      // console.log("COMPILED => ", answers);
       res.send({ answers, isPassed });
     } catch (error) {
-      console.log(error);
-      res.send("Unexpected Error!");
+      // console.log(error);
+      res.send({ error: error.message });
     }
   } else {
     res.send("Invalid Input!");
