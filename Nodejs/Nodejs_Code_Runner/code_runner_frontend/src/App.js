@@ -92,22 +92,33 @@ function App() {
         <div
           style={{
             width: "100%",
+            maxWidth: "50%",
             backgroundColor: "#111",
             padding: 10,
             borderRadius: 10,
+            overflow: "auto",
           }}
         >
-          {question}
+          <pre
+            style={{
+              whiteSpace: "pre-wrap" /* Since CSS 2.1 */,
+              fontSize: 18,
+            }}
+          >
+            {question}
+          </pre>
         </div>
         <textarea
           cols={100}
           rows={40}
           style={{
             width: "100%",
+            maxWidth: "50%",
             borderRadius: 10,
             padding: 10,
             backgroundColor: "black",
             color: "white",
+            whiteSpace: "pre-wrap" /* Since CSS 2.1 */,
           }}
           onChange={(e) => setInputData(e.target.value)}
           value={inputData}
@@ -120,7 +131,7 @@ function App() {
             marginTop: 5,
           }}
         >
-          support : Vijay Kuamr | be1newinner@gmail.com
+          support : Vijay Kumar | be1newinner@gmail.com
         </p>
       </div>
     </div>
