@@ -1,14 +1,11 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
+const setupSwagger = require("../swagger");
+setupSwagger(app);
+
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
 
 const products = Array.from({ length: 30 }, (v, k) => ({
   id: k + 1,
@@ -16,15 +13,75 @@ const products = Array.from({ length: 30 }, (v, k) => ({
   subtitle: `Subtitle for product ${k + 1}`,
   price: (Math.random() * 100).toFixed(2),
   category: `${(k % 5) + 1}`,
-  imageURL: `https://picsum.photos/1080/1080?random=${k + 1}`,
+  imageURL: `https://picsum.photos/200/300?random=${k + 1}`,
 }));
 
-// 1. Get list of products
+/**
+ * @swagger
+ * /products:
+ *   get:
+ *     summary: Get the list of products
+ *     responses:
+ *       200:
+ *         description: List of products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   title:
+ *                     type: string
+ *                   subtitle:
+ *                     type: string
+ *                   price:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *                   imageURL:
+ *                     type: string
+ */
 app.get("/products", (req, res) => {
   res.json(products);
 });
 
-// 2. Get specific product based on ID
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     summary: Get a product by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: A product
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 title:
+ *                   type: string
+ *                 subtitle:
+ *                   type: string
+ *                 price:
+ *                   type: string
+ *                 category:
+ *                   type: string
+ *                 imageURL:
+ *                   type: string
+ *       404:
+ *         description: Product not found
+ */
 app.get("/products/:id", (req, res) => {
   const product = products.find((p) => p.id === parseInt(req.params.id));
   if (product) {
@@ -34,7 +91,42 @@ app.get("/products/:id", (req, res) => {
   }
 });
 
-// 3. Get all products from a specific category
+/**
+ * @swagger
+ * /products/category/{category}:
+ *   get:
+ *     summary: Get all products from a specific category
+ *     parameters:
+ *       - in: path
+ *         name: category
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: List of products in the specified category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   title:
+ *                     type: string
+ *                   subtitle:
+ *                     type: string
+ *                   price:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *                   imageURL:
+ *                     type: string
+ *       404:
+ *         description: No products found in this category
+ */
 app.get("/products/category/:category", (req, res) => {
   const categoryProducts = products.filter(
     (p) => p.category === req.params.category
@@ -46,7 +138,47 @@ app.get("/products/category/:category", (req, res) => {
   }
 });
 
-// 4. Post request to get product based on product id and key
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     summary: Get a product by ID with a key
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *               key:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: A product
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 title:
+ *                   type: string
+ *                 subtitle:
+ *                   type: string
+ *                 price:
+ *                   type: string
+ *                 category:
+ *                   type: string
+ *                 imageURL:
+ *                   type: string
+ *       403:
+ *         description: Invalid key
+ *       404:
+ *         description: Product not found
+ */
 app.post("/products", (req, res) => {
   const { id, key } = req.body;
   if (key !== "abc1245363") {
