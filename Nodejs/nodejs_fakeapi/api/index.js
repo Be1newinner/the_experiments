@@ -1,11 +1,17 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-
+const cors = require("cors");
 // const setupSwagger = require("./docs/swagger");
 // setupSwagger(app);
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const products = Array.from({ length: 30 }, (v, k) => ({
   id: k + 1,
