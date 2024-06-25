@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-const setupSwagger = require("../swagger");
+const setupSwagger = require("./docs/swagger");
 setupSwagger(app);
 
 app.use(express.json());
